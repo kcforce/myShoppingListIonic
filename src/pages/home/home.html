@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Shopping List
+    </ion-title>
+	<ion-buttons end>
+		<button navPush="AddShoppingItemPage" ion-button>
+			<ion-icon name="add"></ion-icon>
+		</button>
+	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list>
+		<ion-list-header>
+			Item Count: {{ (shoppingList$ | async)?.length }}
+		</ion-list-header>
+		<ion-item *ngFor="let item of shoppingList$ | async" detail-push navPush="EditShoppingItemPage" [navParams]="{item: item}">
+				<h2>{{item.name}}</h2>
+				<p>quantity: {{item.quantity}} at price of {{item.price | currency}} each<p>
+		</ion-item>
+	</ion-list>
+</ion-content>
